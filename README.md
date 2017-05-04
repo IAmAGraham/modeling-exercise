@@ -1,24 +1,18 @@
-# README
+# Rails associations exercise
+Create the tables, models and associations required to get the following methods working:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup methods
+student_one = {name:'Jason'}
+student_two = {name:'Yomi'}
+teacher = {name:'Ian'}
 
-Things you may want to cover:
+@student_one = Student.create(student_one)
+@student_two = Student.create(student_two)
+@teacher = Teacher.create(teacher)
 
-* Ruby version
+@teacher.students << @student_one
+@teacher.students << @student_two
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Testing methods
+@teacher.students # should return and Jason and Yomi (inside an ActiveRecord::Associations::CollectionProxy)
+@student_one.teachers #should return Ian (inside an ActiveRecord::Associations::CollectionProxy)
